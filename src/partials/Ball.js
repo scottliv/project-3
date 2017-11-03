@@ -8,6 +8,8 @@ export default class Ball {
     this.boardWidth = boardWidth;
     this.boardHeight = boardHeight;
     this.direction = 1;
+    this.ping = new Audio('public/sounds/pong-01.wav');
+
     
     this.reset();
   }
@@ -61,6 +63,7 @@ export default class Ball {
         && this.y <= bottomY
       ){
         this.vx = -this.vx;
+        this.ping.play();
       }
     } else {
       // detect collision on left side (player 1)
@@ -73,6 +76,7 @@ export default class Ball {
         && this.y <= bottomY
       ){
         this.vx = -this.vx
+        this.ping.play();
       }
     }
   }
