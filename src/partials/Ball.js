@@ -22,7 +22,6 @@ export default class Ball {
     this.served = true;
     
     //set movement vector
-    
     this.setVector();  
     
   }
@@ -36,24 +35,28 @@ export default class Ball {
   }
   
   reset(player) {
+
     //starting coordinates
-    
     this.x = player.x;
-    if (this.x < 20) {
+    if (this.x < this.boardWidth / 2) {
       this.x += player.width;
     }
     this.y = player.y + player.height/2;
     this.served = false;
 
     //set movement vector
-    document.addEventListener('keydown', event => {
-      if(event.key === player.serve){
+
+    let handler = event => {
+      if(event.key === player.serve) {
         this.setVector();
         this.served = true;
+        document.removeEventListener('keydown', handler); 
       }
-    });
+    }
+
+    document.addEventListener('keydown', handler);   
+  }  
     
-  }
   
   wallCollision(player1, player2) {
     const hitLeft = this.x - this.radius <= 0;
@@ -111,14 +114,18 @@ export default class Ball {
   }
   
   render(svg, player1, player2) {
-    if(this.served){
+
+    // if (!this.served) {
+
+    // }
+
+    if (this.served) {
       this.y += this.vy;
       this.x += this.vx; 
     }
+
     this.paddleCollision(player1, player2);
     this.wallCollision(player1, player2);
-    
-    
     
     let ball = document.createElementNS(SVG_NS, 'circle');
     ball.setAttributeNS(null, 'r', this.radius);

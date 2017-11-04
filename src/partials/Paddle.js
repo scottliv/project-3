@@ -13,7 +13,7 @@ export default class Paddle {
     this.serve = serve;
     
     document.addEventListener('keydown', event => {
-      switch(event.key){
+      switch(event.key) {
         case up:
           this.pressedUp = true;
         break;
@@ -55,7 +55,7 @@ down() {
   this.y = Math.min(this.y + this.speed, this.boardHeight - this.height);
 }
 
-render(svg){
+render(svg) {
   let paddle = document.createElementNS(SVG_NS, 'rect');
   paddle.setAttributeNS(null, 'width', this.width);
   paddle.setAttributeNS(null, 'height', this.height);
@@ -63,11 +63,11 @@ render(svg){
   paddle.setAttributeNS(null, 'x', this.x);
   paddle.setAttributeNS(null, 'y', this.y);
 
-  if (this.pressedUp){
+  if (this.pressedUp) {
     this.up();
   }
 
-  if(this.pressedDown){
+  if(this.pressedDown) {
     this.down();
   }
 
