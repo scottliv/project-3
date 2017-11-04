@@ -9,23 +9,50 @@ export default class Ball {
     this.boardHeight = boardHeight;
     this.direction = 1;
     this.ping = new Audio('public/sounds/pong-01.wav');
-
     
-    this.reset();
+    
+    this.start();
   }
   
-  reset() {
+  start() {
     //starting coordinates
-    this.x = this.boardWidth / 2;
+    this.x = this.boardWidth /  2;
     this.y = this.boardHeight / 2;
+
+    this.served = true;
     
     //set movement vector
+    
+    this.setVector();  
+    
+  }
+
+  setVector(){
     this.vy = 0;
     while (this.vy === 0) {
       this.vy = Math.floor(Math.random() * 10 - 5);
-    }  
-    
+    }
     this.vx = this.direction * (9 - Math.abs(this.vy));
+  }
+  
+  reset(player) {
+    //starting coordinates
+    
+    this.x = player.x;
+    if (this.x < 20) {
+      this.x += player.width;
+    }
+    this.y = player.y + player.height/2;
+    this.served = false;
+
+    //set movement vector
+    document.addEventListener('keydown', event => {
+      if(event.key === player.serve){
+        this.setVector();
+        this.served = true;
+      }
+    });
+    
   }
   
   wallCollision(player1, player2) {
@@ -34,10 +61,11 @@ export default class Ball {
     const hitTop = this.y - this.radius <= 0;
     const hitBottom = this.y + this.radius >= this.boardHeight;
     
-    if(hitLeft){
+    if (hitLeft) {
       this.direction = 1;
       this.goal(player2);
-    }else if (hitRight){
+
+    }else if (hitRight) {
       this.direction = -1;
       this.goal(player1);
     } 
@@ -48,10 +76,11 @@ export default class Ball {
   
   goal(player) {
     player.score ++;
-    this.reset();
+    this.reset(player);
   }
   
   paddleCollision(player1, player2) {
+    
     if (this.vx > 0) {
       // detect collision on right side (player 2)
       let paddle = player2.coordinates(player2.x, player2.y, player2.width, player2.height);
@@ -82,9 +111,10 @@ export default class Ball {
   }
   
   render(svg, player1, player2) {
-    this.y += this.vy;
-    this.x += this.vx; 
-    
+    if(this.served){
+      this.y += this.vy;
+      this.x += this.vx; 
+    }
     this.paddleCollision(player1, player2);
     this.wallCollision(player1, player2);
     

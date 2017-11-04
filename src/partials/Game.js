@@ -30,7 +30,8 @@ export default class Game {
 			this.boardGap, 
 			(this.height - this.paddleHeight) / 2,
 			KEYS.a,
-			KEYS.z);
+			KEYS.z,
+			KEYS.s);
 		
 		this.player2 = new Paddle(
 			this.height, 
@@ -39,7 +40,8 @@ export default class Game {
 			(this.width-this.boardGap-this.paddleWidth), 
 			(this.height - this.paddleHeight) / 2,
 			KEYS.up,
-			KEYS.down);
+			KEYS.down,
+			KEYS.left);
 			
 		document.addEventListener('keydown', event => {
 			if (event.key === KEYS.spaceBar) {
