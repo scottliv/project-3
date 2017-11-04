@@ -35,14 +35,14 @@ export default class Ball {
   }
   
   reset(player) {
-
+    this.served = false;
     //starting coordinates
     this.x = player.x;
     if (this.x < this.boardWidth / 2) {
       this.x += player.width;
     }
     this.y = player.y + player.height/2;
-    this.served = false;
+    
 
     //set movement vector
 
@@ -65,12 +65,16 @@ export default class Ball {
     const hitBottom = this.y + this.radius >= this.boardHeight;
     
     if (hitLeft) {
-      this.direction = 1;
+      this.direction = -1;
+      this.serving = player2;
       this.goal(player2);
+      
 
     }else if (hitRight) {
-      this.direction = -1;
+      this.direction = 1;
+      this.serving = player1;
       this.goal(player1);
+      
     } 
     else if (hitTop || hitBottom){
       this.vy = -this.vy;
@@ -118,6 +122,9 @@ export default class Ball {
     // if (!this.served) {
 
     // }
+    if (!this.served){
+      this.y = this.serving.y + this.serving.height / 2;
+    }
 
     if (this.served) {
       this.y += this.vy;
