@@ -1,7 +1,9 @@
-import {SVG_NS} from '../settings';
+import {
+  SVG_NS
+} from '../settings';
 export default class Paddle {
-  
-  
+
+
   constructor(boardHeight, width, height, x, y, up, down, serve) {
     this.boardHeight = boardHeight;
     this.width = width;
@@ -11,15 +13,15 @@ export default class Paddle {
     this.speed = 5;
     this.score = 0;
     this.serve = serve;
-    
+
     document.addEventListener('keydown', event => {
-      switch(event.key) {
+      switch (event.key) {
         case up:
           this.pressedUp = true;
-        break;
+          break;
         case down:
-        this.pressedDown = true;
-        break;
+          this.pressedDown = true;
+          break;
       }
     });
     document.addEventListener('keyup', event => {
@@ -33,45 +35,45 @@ export default class Paddle {
       }
     });
   }
-  
 
-
-
-coordinates(x, y, width, height) {
-  let leftX = x;
-  let rightX = x + width;
-  let topY = y;
-  let bottomY = y + height;
-  return {leftX, rightX, topY, bottomY};
-}
-
-
-up() { 
-  this.y = Math.max(this.y - this.speed, 0);
-}
-
-down() {
-  //GET THE MIN
-  this.y = Math.min(this.y + this.speed, this.boardHeight - this.height);
-}
-
-render(svg) {
-  let paddle = document.createElementNS(SVG_NS, 'rect');
-  paddle.setAttributeNS(null, 'width', this.width);
-  paddle.setAttributeNS(null, 'height', this.height);
-  paddle.setAttributeNS(null, 'fill', '#ffffff');
-  paddle.setAttributeNS(null, 'x', this.x);
-  paddle.setAttributeNS(null, 'y', this.y);
-
-  if (this.pressedUp) {
-    this.up();
+  coordinates(x, y, width, height) {
+    let leftX = x;
+    let rightX = x + width;
+    let topY = y;
+    let bottomY = y + height;
+    return {
+      leftX,
+      rightX,
+      topY,
+      bottomY
+    };
   }
 
-  if(this.pressedDown) {
-    this.down();
+  up() {
+    this.y = Math.max(this.y - this.speed, 0);
   }
 
-  
-  svg.appendChild(paddle);
-}
+  down() {
+    this.y = Math.min(this.y + this.speed, this.boardHeight - this.height);
+  }
+
+  render(svg) {
+    let paddle = document.createElementNS(SVG_NS, 'rect');
+    paddle.setAttributeNS(null, 'width', this.width);
+    paddle.setAttributeNS(null, 'height', this.height);
+    paddle.setAttributeNS(null, 'fill', '#ffffff');
+    paddle.setAttributeNS(null, 'x', this.x);
+    paddle.setAttributeNS(null, 'y', this.y);
+
+    if (this.pressedUp) {
+      this.up();
+    }
+
+    if (this.pressedDown) {
+      this.down();
+    }
+
+
+    svg.appendChild(paddle);
+  }
 }

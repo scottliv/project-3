@@ -1,23 +1,36 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Pong</title>
-	</head>
-	<body>
-		<div class="game-wrapper">
-			<h1>Pong</h1>
-			<div id="game"></div>
-
-			<!-- <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 512 256" width="512" height="256">
-				<rect width="512" height="260" fill="353535"/>
-				<line x1="256" y1="0" x2="256" y2="256" stroke="#ffffff" stroke-dasharray="30,10" stroke-width="4"/>
-				<rect x="10" y="100" width="8" height="56" fill="#ffffff" stroke="#000000" />
-				<rect x="494" y="100" width="8" height="56" fill="#ffffff" stroke="#000000" />
-				<circle cx="256" cy="128" r="8" fill="#ffffff"/>
-			</svg> -->
-			
-		</div>
-		<script type="text/javascript" src="build/bundle.js"></script>
-	</body>
+<head>
+	<meta charset="UTF-8">
+	<title>Pong</title>
+</head>
+<body>
+	<div class="game-wrapper">
+		<h1>Pong</h1>
+		<div id="game"></div>
+	</div>
+	<div class="controls">
+		<ul class="player1">
+			<li>
+				<h2>Player 1 Controls:</h2>
+			</li>
+			<li>UP: A</li>
+			<li>DOWN: Z</li>
+			<li>Serve: S</li>
+			<li>Pause: SpaceBar</li>
+			<li>New Game: G</li>
+		</ul>
+		<ul class="player1">
+			<li>
+				<h2>Player 2 Controls:</h2>
+			</li>
+			<li>UP: Up Arrow</li>
+			<li>DOWN: Down Arrow</li>
+			<li>Serve: Left Arrow</li>
+			<li>Pause: SpaceBar</li>
+			<li>New Game: G</li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="build/bundle.js"></script>
+</body>
 </html>

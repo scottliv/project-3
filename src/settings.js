@@ -6,6 +6,7 @@ export const KEYS = {
   up: 'ArrowUp',       // player 2 up key
   down: 'ArrowDown',     // player 2 down key
   spaceBar: ' ', // pause
-  s: 's',
-  left: 'ArrowLeft' // player 1 serve
+  s: 's',  // player 1 serve
+  left: 'ArrowLeft', // player 2 serve
+  g: 'g' // new game
 }

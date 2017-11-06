@@ -76,7 +76,25 @@ body {
   font-family: 'Silkscreen Web', monotype;
   height: 100vh;
   justify-content: center;
+  flex-direction: column;
   width: 100%;
+}
+
+.controls {
+  padding-top: 20px;
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.game-over {
+  font-size: 30px;
+  color: #000000;
+}
+
+li {
+  padding: 10px 0;
 }
 
 h1 {
