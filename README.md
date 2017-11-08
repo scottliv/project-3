@@ -1,4 +1,4 @@
-![Alt text](/public/images/screenshot.png?raw=true "Pong Screenshot")
+![Alt text](/screenshot.png?raw=true "Pong Screenshot")
 
 # Pong Game
 
