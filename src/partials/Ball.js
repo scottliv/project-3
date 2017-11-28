@@ -62,7 +62,6 @@ export default class Ball {
     document.addEventListener('keydown', handler);
   }
 
-
   wallCollision(player1, player2) {
     const hitLeft = this.x - this.radius <= 0;
     const hitRight = this.x + this.radius >= this.boardWidth;

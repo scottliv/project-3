@@ -3,7 +3,6 @@ import {
 } from '../settings';
 export default class Paddle {
 
-
   constructor(boardHeight, width, height, x, y, up, down, serve) {
     this.boardHeight = boardHeight;
     this.width = width;
@@ -72,8 +71,6 @@ export default class Paddle {
     if (this.pressedDown) {
       this.down();
     }
-
-
     svg.appendChild(paddle);
   }
 }
